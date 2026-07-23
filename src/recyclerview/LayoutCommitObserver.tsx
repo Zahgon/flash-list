@@ -19,56 +19,8 @@ export interface LayoutCommitObserverProps {
  */
 export const LayoutCommitObserver = React.memo(
   (props: LayoutCommitObserverProps) => {
-    const { children, onCommitLayoutEffect } = props;
-    const parentRecyclerViewContext = useRecyclerViewContext();
-    const [_, setRenderId] = useLayoutState(0);
-    const pendingChildIds = useRef<Set<string>>(new Set()).current;
-
-    useLayoutEffect(() => {
-      if (pendingChildIds.size > 0) {
-        return;
-      }
-      onCommitLayoutEffect?.();
-    });
-
-    // Create context for child components
-    const recyclerViewContext: RecyclerViewContext<unknown> = useMemo(() => {
-      return {
-        layout: () => {
-          setRenderId((prev) => prev + 1);
-        },
-        getRef: () => {
-          return parentRecyclerViewContext?.getRef() ?? null;
-        },
-        getParentRef: () => {
-          return parentRecyclerViewContext?.getParentRef() ?? null;
-        },
-        getParentScrollViewRef: () => {
-          return parentRecyclerViewContext?.getParentScrollViewRef() ?? null;
-        },
-        getScrollViewRef: () => {
-          return parentRecyclerViewContext?.getScrollViewRef() ?? null;
-        },
-        markChildLayoutAsPending: (id: string) => {
-          parentRecyclerViewContext?.markChildLayoutAsPending(id);
-          pendingChildIds.add(id);
-        },
-        unmarkChildLayoutAsPending: (id: string) => {
-          parentRecyclerViewContext?.unmarkChildLayoutAsPending(id);
-          if (pendingChildIds.has(id)) {
-            pendingChildIds.delete(id);
-            recyclerViewContext.layout();
-          }
-        },
-      };
-    }, [parentRecyclerViewContext, pendingChildIds, setRenderId]);
-
-    return (
-      <RecyclerViewContextProvider value={recyclerViewContext}>
-        {children}
-      </RecyclerViewContextProvider>
-    );
-  }
+        throw new Error("STUB");
+    }
 );
 
 LayoutCommitObserver.displayName = "LayoutCommitObserver";

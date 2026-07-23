@@ -6,36 +6,25 @@ import { VelocityTracker } from "../helpers/VelocityTracker";
 
 export const useRecyclerViewManager = <T>(props: RecyclerViewProps<T>) => {
   const [recyclerViewManager] = useState<RecyclerViewManager<T>>(
-    () => new RecyclerViewManager(props)
+    () => { throw new Error("STUB"); }
   );
-  const [velocityTracker] = useState(() => new VelocityTracker());
+  const [velocityTracker] = useState(() => { throw new Error("STUB"); });
 
   const { data } = props;
 
   useMemo(() => {
-    recyclerViewManager.updateProps(props);
-    // used to update props so rule can be disabled
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+      throw new Error("STUB");
   }, [props]);
 
   /**
    * When data changes, we need to process the data update before the render happens
    */
   useMemo(() => {
-    recyclerViewManager.processDataUpdate();
-    // used to process data update so rule can be disabled
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+      throw new Error("STUB");
   }, [data]);
 
   useEffect(() => {
-    recyclerViewManager.restoreIfNeeded();
-
-    return () => {
-      recyclerViewManager.dispose();
-      velocityTracker.cleanUp();
-    };
-    // Used to perform cleanup on unmount
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+      throw new Error("STUB");
   }, []);
 
   return { recyclerViewManager, velocityTracker };

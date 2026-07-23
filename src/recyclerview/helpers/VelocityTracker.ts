@@ -57,11 +57,7 @@ export class VelocityTracker<T> {
 
     // Set timeout to signal momentum end after 100ms of no updates
     this.timeoutId = setTimeout(() => {
-      this.cleanUp();
-      this.lastUpdateTime = Date.now();
-      this.velocity.x = 0;
-      this.velocity.y = 0;
-      callback(this.velocity, true);
+        throw new Error("STUB");
     }, 100);
   }
 

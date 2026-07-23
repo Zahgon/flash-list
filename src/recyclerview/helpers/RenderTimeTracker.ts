@@ -35,7 +35,7 @@ export class RenderTimeTracker {
   }
 
   getRawValue() {
-    return this.renderTimeAvgWindow.currentValue;
+      throw new Error("STUB");
   }
 
   getAverageRenderTime() {

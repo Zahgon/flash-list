@@ -8,13 +8,5 @@ import { useRecyclerViewContext } from "../RecyclerViewContextProvider";
  * Using this ensures that performance is optimal for FlashList
  */
 export const useMappingHelper = () => {
-  const recyclerViewContext = useRecyclerViewContext();
-  const getMappingKey = useCallback(
-    (itemKey: string | number | bigint, index: number) => {
-      return recyclerViewContext ? index : itemKey;
-    },
-    [recyclerViewContext]
-  );
-
-  return { getMappingKey };
+    throw new Error("STUB");
 };

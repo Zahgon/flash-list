@@ -42,52 +42,36 @@ export class RecyclerViewManager<T> {
   public isInitialScrollComplete = false;
 
   public get animationOptimizationsEnabled() {
-    return this._animationOptimizationsEnabled;
+      throw new Error("STUB");
   }
 
   public set animationOptimizationsEnabled(value: boolean) {
-    this._animationOptimizationsEnabled = value;
-    this.renderStackManager.disableRecycling = value;
+      throw new Error("STUB");
   }
 
   public get isOffsetProjectionEnabled() {
-    return this.engagedIndicesTracker.enableOffsetProjection;
+      throw new Error("STUB");
   }
 
   public get isDisposed() {
-    return this._isDisposed;
+      throw new Error("STUB");
   }
 
   public get numColumns() {
-    return this.propsRef.numColumns ?? 1;
+      throw new Error("STUB");
   }
 
   constructor(props: RecyclerViewProps<T>) {
-    this.getDataKey = this.getDataKey.bind(this);
-    this.getItemType = this.getItemType.bind(this);
-    this.overrideItemLayout = this.overrideItemLayout.bind(this);
-    this.propsRef = props;
-    this.engagedIndicesTracker = new RVEngagedIndicesTrackerImpl();
-    this.renderStackManager = new RenderStackManager(
-      props.maxItemsInRecyclePool
-    );
-    this.itemViewabilityManager = new ViewabilityManager<T>(this as any);
-    this.isInitialScrollComplete = this.getInitialScrollIndex() === undefined;
-    this.checkPropsAndWarn();
+      throw new Error("STUB");
   }
 
   // updates render stack based on the engaged indices which are sorted. Recycles unused keys.
   private updateRenderStack = (engagedIndices: ConsecutiveNumbers): void => {
-    this.renderStackManager.sync(
-      this.getDataKey,
-      this.getItemType,
-      engagedIndices,
-      this.getDataLength()
-    );
+      throw new Error("STUB");
   };
 
   get props() {
-    return this.propsRef;
+      throw new Error("STUB");
   }
 
   setOffsetProjectionEnabled(value: boolean) {
@@ -411,8 +395,7 @@ export class RecyclerViewManager<T> {
       // console.log("---------> visibleIndices", visibleIndices);
       this.hasRenderedProgressively = visibleIndices.every(
         (index) =>
-          layoutManager.getLayout(index).isHeightMeasured &&
-          layoutManager.getLayout(index).isWidthMeasured
+          { throw new Error("STUB"); }
       );
 
       if (this.hasRenderedProgressively) {
@@ -457,8 +440,6 @@ export class RecyclerViewManager<T> {
   }
 
   private checkPropsAndWarn() {
-    if (this.propsRef.onStartReached && !this.propsRef.keyExtractor) {
-      console.warn(WarningMessages.keyExtractorNotDefinedForMVCP);
-    }
+      throw new Error("STUB");
   }
 }

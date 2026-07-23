@@ -59,90 +59,7 @@ export interface ViewHolderProps<TItem> {
  * @template TItem - The type of item being rendered in the list
  */
 const ViewHolderInternal = <TItem,>(props: ViewHolderProps<TItem>) => {
-  // create ref for View
-  const viewRef = useRef<CompatView>(null);
-  const {
-    index,
-    refHolder,
-    layout,
-    onSizeChanged,
-    renderItem,
-    extraData,
-    item,
-    target,
-    CellRendererComponent,
-    ItemSeparatorComponent,
-    trailingItem,
-    horizontal,
-    hidden,
-    inverted,
-  } = props;
-
-  useLayoutEffect(() => {
-    refHolder.set(index, viewRef);
-    return () => {
-      if (refHolder.get(index) === viewRef) {
-        refHolder.delete(index);
-      }
-    };
-  }, [index, refHolder]);
-
-  const onLayout = useCallback(
-    (event: LayoutChangeEvent) => {
-      onSizeChanged?.(index, event.nativeEvent.layout);
-    },
-    [index, onSizeChanged]
-  );
-
-  const separator = useMemo(() => {
-    return ItemSeparatorComponent && trailingItem !== undefined ? (
-      <ItemSeparatorComponent leadingItem={item} trailingItem={trailingItem} />
-    ) : null;
-  }, [ItemSeparatorComponent, item, trailingItem]);
-
-  // console.log("ViewHolder re-render", index);
-
-  const children = useMemo(() => {
-    return renderItem?.({ item, index, extraData, target }) ?? null;
-    // TODO: Test more thoroughly
-    // We don't really  to re-render the children when the index changes
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [item, extraData, target, renderItem]);
-
-  const invertedTransformStyle = inverted
-    ? getInvertedTransformStyle(horizontal)
-    : undefined;
-
-  const style = {
-    flexDirection: horizontal ? "row" : "column",
-    position: target === "StickyHeader" ? "relative" : "absolute",
-    width: layout.enforcedWidth ? layout.width : undefined,
-    height: layout.enforcedHeight ? layout.height : undefined,
-    minHeight: layout.minHeight,
-    minWidth: layout.minWidth,
-    maxHeight: layout.maxHeight,
-    maxWidth: layout.maxWidth,
-    left: layout.x,
-    top: layout.y,
-    opacity: hidden ? 0 : 1,
-    ...invertedTransformStyle,
-  } as const;
-
-  // TODO: Fix this type issue
-  const CompatContainer = (CellRendererComponent ??
-    CompatView) as unknown as any;
-
-  return (
-    <CompatContainer
-      ref={viewRef}
-      onLayout={onLayout}
-      style={style}
-      index={index}
-    >
-      {children}
-      {separator}
-    </CompatContainer>
-  );
+    throw new Error("STUB");
 };
 
 /**
@@ -152,23 +69,7 @@ const ViewHolderInternal = <TItem,>(props: ViewHolderProps<TItem>) => {
 export const ViewHolder = React.memo(
   ViewHolderInternal,
   (prevProps, nextProps) => {
-    // compare all props and spread layout
-    return (
-      prevProps.index === nextProps.index &&
-      areLayoutsEqual(prevProps.layout, nextProps.layout) &&
-      prevProps.refHolder === nextProps.refHolder &&
-      prevProps.onSizeChanged === nextProps.onSizeChanged &&
-      prevProps.extraData === nextProps.extraData &&
-      prevProps.target === nextProps.target &&
-      prevProps.item === nextProps.item &&
-      prevProps.renderItem === nextProps.renderItem &&
-      prevProps.CellRendererComponent === nextProps.CellRendererComponent &&
-      prevProps.ItemSeparatorComponent === nextProps.ItemSeparatorComponent &&
-      prevProps.trailingItem === nextProps.trailingItem &&
-      prevProps.horizontal === nextProps.horizontal &&
-      prevProps.hidden === nextProps.hidden &&
-      prevProps.inverted === nextProps.inverted
-    );
+      throw new Error("STUB");
   }
 );
 

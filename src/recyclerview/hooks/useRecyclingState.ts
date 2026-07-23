@@ -31,15 +31,7 @@ export function useRecyclingState<T>(
 
   // Reset state when dependencies change
   useMemo(() => {
-    // Calculate initial value from function or direct value
-    const initialValue =
-      typeof initialState === "function"
-        ? (initialState as () => T)()
-        : initialState;
-    valueStore.current = initialValue;
-    // Call onReset callback if provided
-    onReset?.();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+      throw new Error("STUB");
   }, deps);
 
   /**
@@ -48,18 +40,8 @@ export function useRecyclingState<T>(
    */
   const setStateProxy: RecyclingStateSetter<T> = useCallback(
     (newValue, skipParentLayout) => {
-      // Calculate next state value from function or direct value
-      const nextState =
-        typeof newValue === "function"
-          ? (newValue as (prevValue: T) => T)(valueStore.current!)
-          : newValue;
-
-      // Only update and trigger re-render if value has changed
-      if (nextState !== valueStore.current) {
-        valueStore.current = nextState;
-        setCounter((prev) => prev + 1, skipParentLayout);
-      }
-    },
+          throw new Error("STUB");
+      },
     [setCounter]
   );
 

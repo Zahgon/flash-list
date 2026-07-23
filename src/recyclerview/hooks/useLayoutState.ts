@@ -37,17 +37,8 @@ export function useLayoutState<T>(
    */
   const setLayoutState: LayoutStateSetter<T> = useCallback(
     (newValue, skipParentLayout) => {
-      // Update the state using either the new value or the result of the updater function
-      setState((prevValue) =>
-        typeof newValue === "function"
-          ? (newValue as (prevValue: T) => T)(prevValue)
-          : newValue
-      );
-      if (!skipParentLayout) {
-        // Trigger a layout recalculation in the RecyclerView
-        recyclerViewContext?.layout();
-      }
-    },
+          throw new Error("STUB");
+      },
     [recyclerViewContext]
   );
 

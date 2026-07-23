@@ -59,7 +59,5 @@ export function useRecyclerViewContext<T>():
     | undefined;
 }
 export function useFlashListContext<T>(): FlashListContext<T> | undefined {
-  return useContext(RecyclerViewContextInstance) as
-    | FlashListContext<T>
-    | undefined;
+    throw new Error("STUB");
 }

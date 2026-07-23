@@ -53,132 +53,26 @@ export function useBoundDetection<T>(
    * and triggers appropriate callbacks if configured.
    */
   const checkBounds = useCallback(() => {
-    lastCheckBoundsTime.current = Date.now();
-
-    const {
-      onEndReached,
-      onStartReached,
-      maintainVisibleContentPosition,
-      horizontal,
-      onEndReachedThreshold: onEndReachedThresholdProp,
-      onStartReachedThreshold: onStartReachedThresholdProp,
-    } = recyclerViewManager.props;
-    // Skip all calculations if neither callback is provided and autoscroll is disabled
-    const autoscrollToBottomThreshold =
-      maintainVisibleContentPosition?.autoscrollToBottomThreshold ?? -1;
-
-    if (!onEndReached && !onStartReached && autoscrollToBottomThreshold < 0) {
-      return;
-    }
-
-    if (recyclerViewManager.getIsFirstLayoutComplete()) {
-      const lastScrollOffset =
-        recyclerViewManager.getAbsoluteLastScrollOffset();
-      const contentSize = recyclerViewManager.getChildContainerDimensions();
-      const windowSize = recyclerViewManager.getWindowSize();
-      const isHorizontal = horizontal === true;
-
-      // Calculate dimensions based on scroll direction
-      const visibleLength = isHorizontal ? windowSize.width : windowSize.height;
-      const contentLength =
-        (isHorizontal ? contentSize.width : contentSize.height) +
-        recyclerViewManager.firstItemOffset;
-
-      // Skip bound detection if the window has no measurable size.
-      // This can happen when the list is mounted off-screen (e.g., in a
-      // background tab) and all measurements come back as 0, which would
-      // incorrectly trigger onEndReached/onStartReached.
-      if (visibleLength <= 0) {
-        return;
-      }
-
-      // Check if we're near the end of the list
-      if (onEndReached) {
-        const onEndReachedThreshold = onEndReachedThresholdProp ?? 0.5;
-        const endThresholdDistance = onEndReachedThreshold * visibleLength;
-
-        const isNearEnd =
-          Math.ceil(lastScrollOffset + visibleLength) >=
-          contentLength - endThresholdDistance;
-
-        if (isNearEnd && !pendingEndReached.current) {
-          pendingEndReached.current = true;
-          onEndReached();
-        }
-        pendingEndReached.current = isNearEnd;
-      }
-
-      // Check if we're near the start of the list
-      if (onStartReached) {
-        const onStartReachedThreshold = onStartReachedThresholdProp ?? 0.2;
-        const startThresholdDistance = onStartReachedThreshold * visibleLength;
-
-        const isNearStart = lastScrollOffset <= startThresholdDistance;
-
-        if (isNearStart && !pendingStartReached.current) {
-          pendingStartReached.current = true;
-          onStartReached();
-        }
-        pendingStartReached.current = isNearStart;
-      }
-
-      // Handle auto-scrolling to bottom for vertical lists
-      if (!isHorizontal && autoscrollToBottomThreshold >= 0) {
-        const autoscrollToBottomThresholdDistance =
-          autoscrollToBottomThreshold * visibleLength;
-
-        const isNearBottom =
-          Math.ceil(lastScrollOffset + visibleLength) >=
-          contentLength - autoscrollToBottomThresholdDistance;
-
-        if (isNearBottom) {
-          pendingAutoscrollToBottom.current = true;
-        } else {
-          pendingAutoscrollToBottom.current = false;
-        }
-      }
-    }
+      throw new Error("STUB");
   }, [recyclerViewManager]);
 
   const runAutoScrollToBottomCheck = useCallback(() => {
-    // Suppress MVCP autoscroll while a programmatic scrollToIndex is in
-    // flight. FlashList disables offset projection at the start of
-    // scrollToIndex and reenables it ~200-300ms after settling. Without
-    // this guard, the sticky pendingAutoscrollToBottom ref races against
-    // scrollToIndex and fires scrollToEnd mid flight.
-    if (!recyclerViewManager.isOffsetProjectionEnabled) {
-      return;
-    }
-    if (pendingAutoscrollToBottom.current) {
-      pendingAutoscrollToBottom.current = false;
-      requestAnimationFrame(() => {
-        const shouldAnimate =
-          recyclerViewManager.props.maintainVisibleContentPosition
-            ?.animateAutoScrollToBottom ?? true;
-        scrollViewRef.current?.scrollToEnd({
-          animated: shouldAnimate && !recyclerViewManager.ignoreScrollEvents,
-        });
-      });
-    }
+      throw new Error("STUB");
   }, [requestAnimationFrame, scrollViewRef, recyclerViewManager]);
 
   // Reset end reached state when data changes
   useMemo(() => {
-    pendingEndReached.current = false;
-    // needs to run only when data changes
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+      throw new Error("STUB");
   }, [data]);
 
   // Auto-scroll to bottom when new content is added and we're near the bottom
   useEffect(() => {
-    runAutoScrollToBottomCheck();
+      throw new Error("STUB");
   }, [data, runAutoScrollToBottomCheck, windowHeight, windowWidth]);
 
   // Since content changes frequently, we try and avoid doing the auto scroll during active scrolls
   useEffect(() => {
-    if (Date.now() - lastCheckBoundsTime.current >= 100) {
-      runAutoScrollToBottomCheck();
-    }
+      throw new Error("STUB");
   }, [
     contentHeight,
     contentWidth,

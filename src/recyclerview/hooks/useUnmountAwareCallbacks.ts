@@ -6,28 +6,18 @@ import { useCallback, useEffect, useState } from "react";
  */
 export function useUnmountAwareTimeout() {
   // Store active timeout IDs in a Set for more efficient add/remove operations
-  const [timeoutIds] = useState<Set<NodeJS.Timeout>>(() => new Set());
+  const [timeoutIds] = useState<Set<NodeJS.Timeout>>(() => { throw new Error("STUB"); });
 
   // Clear all timeouts on unmount
   useEffect(() => {
-    return () => {
-      timeoutIds.forEach((id) => global.clearTimeout(id));
-      timeoutIds.clear();
-    };
+      throw new Error("STUB");
   }, [timeoutIds]);
 
   // Create a safe setTimeout that will be cleared on unmount
   const setTimeout = useCallback(
     (callback: () => void, delay: number): void => {
-      const id = global.setTimeout(() => {
-        // Remove this timeout ID from the tracking set
-        timeoutIds.delete(id);
-        callback();
-      }, delay);
-
-      // Track this timeout ID
-      timeoutIds.add(id);
-    },
+          throw new Error("STUB");
+      },
     [timeoutIds]
   );
 
@@ -42,28 +32,18 @@ export function useUnmountAwareTimeout() {
  */
 export function useUnmountAwareAnimationFrame() {
   // Store active animation frame request IDs in a Set for more efficient add/remove operations
-  const [requestIds] = useState<Set<number>>(() => new Set());
+  const [requestIds] = useState<Set<number>>(() => { throw new Error("STUB"); });
 
   // Cancel all animation frame requests on unmount
   useEffect(() => {
-    return () => {
-      requestIds.forEach((id) => cancelAnimationFrame(id));
-      requestIds.clear();
-    };
+      throw new Error("STUB");
   }, [requestIds]);
 
   // Create a safe requestAnimationFrame that will be canceled on unmount
   const requestAnimationFrame = useCallback(
     (callback: FrameRequestCallback): void => {
-      const id = global.requestAnimationFrame((timestamp) => {
-        // Remove this request ID from the tracking set
-        requestIds.delete(id);
-        callback(timestamp);
-      });
-
-      // Track this request ID
-      requestIds.add(id);
-    },
+          throw new Error("STUB");
+      },
     [requestIds]
   );
 

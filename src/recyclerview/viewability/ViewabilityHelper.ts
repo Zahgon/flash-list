@@ -71,23 +71,14 @@ class ViewabilityHelper {
       return;
     }
     const newViewableIndices = this.possiblyViewableIndices.filter((index) =>
-      this.isItemViewable(
-        index,
-        horizontal,
-        scrollOffset,
-        listSize,
-        this.viewabilityConfig?.viewAreaCoveragePercentThreshold,
-        this.viewabilityConfig?.itemVisiblePercentThreshold,
-        getLayout
-      )
+      { throw new Error("STUB"); }
     );
     this.viewableIndices = newViewableIndices;
     const minimumViewTime = this.viewabilityConfig?.minimumViewTime ?? 250;
     // Setting default to 250. Default of 0 can impact performance when user scrolls fast.
     if (minimumViewTime > 0) {
       const timeoutId = setTimeout(() => {
-        this.timers.delete(timeoutId);
-        this.checkViewableIndicesChanges(newViewableIndices);
+          throw new Error("STUB");
       }, minimumViewTime);
       this.timers.add(timeoutId);
     } else {
@@ -98,13 +89,13 @@ class ViewabilityHelper {
   public checkViewableIndicesChanges(newViewableIndices: number[]) {
     // Check if all viewable indices are still available (applicable if minimumViewTime > 0)
     const currentlyNewViewableIndices = newViewableIndices.filter((index) =>
-      this.viewableIndices.includes(index)
+      { throw new Error("STUB"); }
     );
     const newlyVisibleItems = currentlyNewViewableIndices.filter(
-      (index) => !this.lastReportedViewableIndices.includes(index)
+      (index) => { throw new Error("STUB"); }
     );
     const newlyNonvisibleItems = this.lastReportedViewableIndices.filter(
-      (index) => !currentlyNewViewableIndices.includes(index)
+      (index) => { throw new Error("STUB"); }
     );
 
     if (newlyVisibleItems.length > 0 || newlyNonvisibleItems.length > 0) {

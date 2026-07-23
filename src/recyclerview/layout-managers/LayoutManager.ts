@@ -55,18 +55,7 @@ export abstract class RVLayoutManager {
   private lastSkippedLayoutIndex = Number.MAX_VALUE;
 
   constructor(params: LayoutParams, previousLayoutManager?: RVLayoutManager) {
-    this.heightAverageWindow = new MultiTypeAverageWindow(5, 200);
-    this.widthAverageWindow = new MultiTypeAverageWindow(5, 200);
-    this.getItemType = params.getItemType;
-    this.overrideItemLayout = params.overrideItemLayout;
-    this.layouts = previousLayoutManager?.layouts ?? [];
-    if (previousLayoutManager) {
-      this.updateLayoutParams(params);
-    } else {
-      this.horizontal = Boolean(params.horizontal);
-      this.windowSize = params.windowSize;
-      this.maxColumns = params.maxColumns ?? 1;
-    }
+      throw new Error("STUB");
   }
 
   /**
@@ -151,19 +140,7 @@ export abstract class RVLayoutManager {
    * @param indices Array of indices to remove
    */
   deleteLayout(indices: number[]): void {
-    // Sort indices in descending order
-    indices.sort((num1, num2) => num2 - num1);
-
-    // Remove elements from the array
-    for (const index of indices) {
-      this.layouts.splice(index, 1);
-    }
-    const startIndex = Math.min(...indices);
-    // Recompute layouts starting from the smallest index in the original indices array
-    this._recomputeLayouts(
-      this.getMinRecomputeIndex(startIndex),
-      this.getMaxRecomputeIndex(startIndex)
-    );
+      throw new Error("STUB");
   }
 
   /**
@@ -185,7 +162,7 @@ export abstract class RVLayoutManager {
       // layoutInfo may contain stale indices from ViewHolders that were rendered
       // before the data shrunk. Filter out any indices that are now out of bounds.
       // eslint-disable-next-line no-param-reassign
-      layoutInfo = layoutInfo.filter((info) => info.index < totalItemCount);
+      layoutInfo = layoutInfo.filter((info) => { throw new Error("STUB"); });
     }
     // update average windows
     minRecomputeIndex = Math.min(
@@ -341,7 +318,7 @@ export abstract class RVLayoutManager {
    * @returns Minimum index to process
    */
   private getMinRecomputeIndex(startIndex: number): number {
-    return startIndex;
+      throw new Error("STUB");
   }
 
   private _recomputeLayouts(startIndex: number, endIndex: number): void {

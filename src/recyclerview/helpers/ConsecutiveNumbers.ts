@@ -14,14 +14,14 @@ export class ConsecutiveNumbers {
    * Get the length of the array
    */
   get length(): number {
-    return Math.max(0, this.endIndex - this.startIndex + 1);
+      throw new Error("STUB");
   }
 
   /**
    * Get element at specified index
    */
   at(index: number): number {
-    return this.startIndex + index;
+      throw new Error("STUB");
   }
 
   /**
@@ -38,14 +38,7 @@ export class ConsecutiveNumbers {
    * @returns An array containing all consecutive numbers
    */
   toArray(): number[] {
-    if (this.length === 0) {
-      return [];
-    }
-    const array = new Array(this.length);
-    for (let i = 0; i < this.length; i++) {
-      array[i] = this.startIndex + i;
-    }
-    return array;
+      throw new Error("STUB");
   }
 
   /**
@@ -59,7 +52,7 @@ export class ConsecutiveNumbers {
    * Get index of a value in the consecutive range
    */
   indexOf(value: number): number {
-    return this.includes(value) ? value - this.startIndex : -1;
+      throw new Error("STUB");
   }
 
   findValue(
@@ -69,13 +62,7 @@ export class ConsecutiveNumbers {
       array: ConsecutiveNumbers
     ) => boolean | undefined
   ): number | undefined {
-    for (let i = 0; i < this.length; i++) {
-      const value = this.startIndex + i;
-      if (predicate(value, i, this)) {
-        return value;
-      }
-    }
-    return undefined;
+      throw new Error("STUB");
   }
 
   /**

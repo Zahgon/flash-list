@@ -26,22 +26,7 @@ export class JSFPSMonitor {
   }
 
   private updateLoopCompute = () => {
-    this.frameCount++;
-    const elapsedTime = (Date.now() - this.startTime) / 1000;
-    this.averageFPS = elapsedTime > 0 ? this.frameCount / elapsedTime : 0;
-
-    this.timeWindow.frameCount++;
-    const timeWindowElapsedTime =
-      (Date.now() - this.timeWindow.startTime) / 1000;
-    if (timeWindowElapsedTime >= 1) {
-      const timeWindowAverageFPS =
-        this.timeWindow.frameCount / timeWindowElapsedTime;
-      this.minFPS = Math.min(this.minFPS, timeWindowAverageFPS);
-      this.maxFPS = Math.max(this.maxFPS, timeWindowAverageFPS);
-      this.timeWindow.frameCount = 0;
-      this.timeWindow.startTime = Date.now();
-    }
-    this.measureLoop();
+      throw new Error("STUB");
   };
 
   public startTracking() {

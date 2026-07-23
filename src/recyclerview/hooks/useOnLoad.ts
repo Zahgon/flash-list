@@ -30,28 +30,11 @@ export const useOnListLoad = <T>(
   // });
 
   useMemo(() => {
-    loadStartTimeRef.current = Date.now();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+      throw new Error("STUB");
   }, [dataLength]);
 
   useOnLoad(recyclerViewManager, () => {
-    const elapsedTimeInMs = Date.now() - loadStartTimeRef.current;
-    // Commented code below was used for debugging purposes
-    // to display all collected timing data points
-    // const dataCollectorString = dataCollector.current
-    //   ?.map((value) => value.toString())
-    //   .join(", ");
-    // ToastAndroid?.show(
-    //   `onLoad called after ${dataCollectorString}`,
-    //   ToastAndroid.SHORT
-    // );
-    // console.log("----------> dataCollector", dataCollectorString);
-    // console.log("----------> FlashList v2 load in", `${elapsedTimeInMs} ms`);
-    requestAnimationFrame(() => {
-      recyclerViewManager.isFirstPaintOnUiComplete = true;
-      onLoad?.({ elapsedTimeInMs });
-      setIsLoaded(true);
-    });
+      throw new Error("STUB");
   });
 
   return { isLoaded };
@@ -71,10 +54,6 @@ export const useOnLoad = <T>(
 ) => {
   const isLoaded = useRef<boolean>(false);
   useEffect(() => {
-    // Only trigger onLoad callback once when first layout is complete
-    if (recyclerViewManager.getIsFirstLayoutComplete() && !isLoaded.current) {
-      isLoaded.current = true;
-      onLoad();
-    }
+      throw new Error("STUB");
   });
 };

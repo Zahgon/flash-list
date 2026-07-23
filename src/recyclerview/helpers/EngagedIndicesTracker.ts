@@ -219,7 +219,7 @@ export class RVEngagedIndicesTrackerImpl implements RVEngagedIndicesTracker {
   private getMedianVelocity(): number {
     // Make a copy of velocity history and sort it
     const sortedVelocities = [...this.velocityHistory].sort(
-      (valueA, valueB) => valueA - valueB
+      (valueA, valueB) => { throw new Error("STUB"); }
     );
     const length = sortedVelocities.length;
 

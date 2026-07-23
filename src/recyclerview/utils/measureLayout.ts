@@ -43,10 +43,7 @@ function measureLayoutRelative(
 ) {
   const layout = { x: 0, y: 0, width: 0, height: 0 };
   view.measureLayout(relativeTo, (x, y, width, height) => {
-    layout.x = x;
-    layout.y = y;
-    layout.width = roundOffPixel(width);
-    layout.height = roundOffPixel(height);
+      throw new Error("STUB");
   });
 
   if (oldLayout) {

@@ -7,18 +7,14 @@ export class AverageWindow {
   private inputValues: (number | undefined)[];
   private nextIndex = 0;
   constructor(size: number, startValue?: number) {
-    this.inputValues = new Array<number>(Math.max(1, size));
-    this.currentAverage = startValue ?? 0;
-    this.currentCount = startValue === undefined ? 0 : 1;
-    this.nextIndex = this.currentCount;
-    this.inputValues[0] = startValue;
+      throw new Error("STUB");
   }
 
   /**
    * Can be used to get the current average value
    */
   public get currentValue(): number {
-    return this.currentAverage;
+      throw new Error("STUB");
   }
 
   /**
@@ -79,6 +75,6 @@ export class MultiTypeAverageWindow {
   }
 
   public reset(): void {
-    this.averageWindows.clear();
+      throw new Error("STUB");
   }
 }

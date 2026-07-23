@@ -6,14 +6,5 @@
  * @returns Multiplied data.
  */
 export function useDataMultiplier<T>(data: T[], count: number): [T[]] {
-  const len = data.length;
-  const arr = new Array<T>(count);
-  let isObject = false;
-  if (typeof data[0] === "object") {
-    isObject = true;
-  }
-  for (let i = 0; i < count; i++) {
-    arr[i] = isObject ? { ...data[i % len] } : data[i % len];
-  }
-  return [arr];
+    throw new Error("STUB");
 }

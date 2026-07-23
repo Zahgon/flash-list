@@ -54,52 +54,7 @@ export function useBenchmark(
   const cancellableRef = useRef<Cancellable | null>(null);
 
   const startBenchmark = useCallback(() => {
-    if (isBenchmarkRunning) {
-      return;
-    }
-
-    const cancellable = new Cancellable();
-    cancellableRef.current = cancellable;
-    const suggestions: string[] = [];
-
-    if (flashListRef.current) {
-      if (!(Number(flashListRef.current.props.data?.length) > 0)) {
-        throw new Error(ErrorMessages.dataEmptyCannotRunBenchmark);
-      }
-    }
-
-    setIsBenchmarkRunning(true);
-
-    const runBenchmark = async () => {
-      const jsFPSMonitor = new JSFPSMonitor();
-      jsFPSMonitor.startTracking();
-      for (let i = 0; i < (params.repeatCount || 1); i++) {
-        await runScrollBenchmark(
-          flashListRef,
-          cancellable,
-          params.speedMultiplier || 1
-        );
-      }
-      const jsProfilerResponse = jsFPSMonitor.stopAndGetData();
-      if (jsProfilerResponse.averageFPS < 35) {
-        suggestions.push(
-          `Your average JS FPS is low. This can indicate that your components are doing too much work. Try to optimize your components and reduce re-renders if any`
-        );
-      }
-      computeSuggestions(flashListRef, suggestions);
-      const result: BenchmarkResult = generateResult(
-        jsProfilerResponse,
-        suggestions,
-        cancellable
-      );
-      if (!cancellable.isCancelled()) {
-        result.formattedString = getFormattedString(result);
-      }
-      callback(result);
-      setIsBenchmarkRunning(false);
-    };
-
-    runBenchmark();
+      throw new Error("STUB");
   }, [
     callback,
     flashListRef,
@@ -109,21 +64,7 @@ export function useBenchmark(
   ]);
 
   useEffect(() => {
-    if (params.startManually) {
-      return;
-    }
-
-    const cancelTimeout = setTimeout(() => {
-      startBenchmark();
-    }, params.startDelayInMs || 3000);
-
-    return () => {
-      clearTimeout(cancelTimeout);
-      if (cancellableRef.current) {
-        cancellableRef.current.cancel();
-      }
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+      throw new Error("STUB");
   }, []);
 
   return { startBenchmark, isBenchmarkRunning } as const;
@@ -136,7 +77,7 @@ export function getFormattedString(res: BenchmarkResult) {
     `${
       res.suggestions.length > 0
         ? `Suggestions:\n\n${res.suggestions
-            .map((value, index) => `${index + 1}. ${value}`)
+            .map((value, index) => { throw new Error("STUB"); })
             .join("\n")}`
         : ``
     }`
@@ -176,10 +117,7 @@ async function runScrollBenchmark(
       const toY = rvContentSize.height - rvSize.height;
 
       const scrollNow = (x: number, y: number) => {
-        flashListRef.current?.scrollToOffset({
-          offset: horizontal ? x : y,
-          animated: false,
-        });
+          throw new Error("STUB");
       };
 
       await autoScroll(

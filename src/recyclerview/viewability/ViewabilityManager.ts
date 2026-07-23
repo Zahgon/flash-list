@@ -14,49 +14,24 @@ export default class ViewabilityManager<T> {
   private hasInteracted = false;
 
   constructor(rvManager: RecyclerViewManager<T>) {
-    this.rvManager = rvManager;
-    if (
-      rvManager.props.onViewableItemsChanged !== null &&
-      rvManager.props.onViewableItemsChanged !== undefined
-    ) {
-      this.viewabilityHelpers.push(
-        this.createViewabilityHelper(
-          rvManager.props.viewabilityConfig,
-          (info) => {
-            rvManager.props.onViewableItemsChanged?.(info);
-          }
-        )
-      );
-    }
-    (rvManager.props.viewabilityConfigCallbackPairs ?? []).forEach(
-      (pair, index) => {
-        this.viewabilityHelpers.push(
-          this.createViewabilityHelper(pair.viewabilityConfig, (info) => {
-            const callback =
-              rvManager.props.viewabilityConfigCallbackPairs?.[index]
-                ?.onViewableItemsChanged;
-            callback?.(info);
-          })
-        );
-      }
-    );
+      throw new Error("STUB");
   }
 
   /**
    * @returns true if the viewability manager has any viewability callback pairs registered.
    */
   public get shouldListenToVisibleIndices() {
-    return this.viewabilityHelpers.length > 0;
+      throw new Error("STUB");
   }
 
   public dispose = () => {
     this.viewabilityHelpers.forEach((viewabilityHelper) =>
-      viewabilityHelper.dispose()
+      { throw new Error("STUB"); }
     );
   };
 
   public onVisibleIndicesChanged = (all: number[]) => {
-    this.updateViewableItems(all);
+      throw new Error("STUB");
   };
 
   public recordInteraction = () => {
@@ -65,7 +40,7 @@ export default class ViewabilityManager<T> {
     }
     this.hasInteracted = true;
     this.viewabilityHelpers.forEach((viewabilityHelper) => {
-      viewabilityHelper.hasInteracted = true;
+        throw new Error("STUB");
     });
     this.updateViewableItems();
   };
@@ -79,19 +54,13 @@ export default class ViewabilityManager<T> {
       (this.rvManager.getAbsoluteLastScrollOffset() ?? 0) -
       this.rvManager.firstItemOffset;
     this.viewabilityHelpers.forEach((viewabilityHelper) => {
-      viewabilityHelper.updateViewableItems(
-        this.rvManager.props.horizontal ?? false,
-        scrollOffset,
-        listSize,
-        (index: number) => this.rvManager.getLayout(index),
-        newViewableIndices
-      );
+        throw new Error("STUB");
     });
   };
 
   public clearLastReportedViewableIndices = () => {
     this.viewabilityHelpers.forEach((viewabilityHelper) =>
-      viewabilityHelper.clearLastReportedViewableIndices()
+      { throw new Error("STUB"); }
     );
   };
 
@@ -109,36 +78,6 @@ export default class ViewabilityManager<T> {
       | null
       | undefined
   ) => {
-    const mapViewToken: (index: number, isViewable: boolean) => ViewToken<T> = (
-      index: number,
-      isViewable: boolean
-    ) => {
-      const item = this.rvManager.props.data![index];
-      const key =
-        item === undefined || this.rvManager.props.keyExtractor === undefined
-          ? index.toString()
-          : this.rvManager.props.keyExtractor(item, index);
-      return {
-        index,
-        isViewable,
-        item,
-        key,
-        timestamp: Date.now(),
-      };
-    };
-    return new ViewabilityHelper(
-      viewabilityConfig,
-      (indices, newlyVisibleIndices, newlyNonvisibleIndices) => {
-        onViewableItemsChanged?.({
-          viewableItems: indices.map((index) => mapViewToken(index, true)),
-          changed: [
-            ...newlyVisibleIndices.map((index) => mapViewToken(index, true)),
-            ...newlyNonvisibleIndices.map((index) =>
-              mapViewToken(index, false)
-            ),
-          ],
-        });
-      }
-    );
+      throw new Error("STUB");
   };
 }

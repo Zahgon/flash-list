@@ -35,32 +35,5 @@ export function ScrollAnchor({
   scrollAnchorRef,
   horizontal,
 }: ScrollAnchorProps) {
-  const [scrollOffset, setScrollOffset] = useState(1000000); // TODO: Fix this value
-
-  // Expose scrollBy method through ref
-  useImperativeHandle(
-    scrollAnchorRef,
-    () => ({
-      scrollBy: (offset: number) => {
-        setScrollOffset((prev) => prev + offset);
-      },
-    }),
-    []
-  );
-
-  // Create an invisible anchor element that can be positioned
-  const anchor = useMemo(() => {
-    return (
-      <CompatView
-        style={{
-          position: "absolute",
-          height: 0,
-          top: horizontal ? 0 : scrollOffset,
-          left: horizontal ? scrollOffset : 0,
-        }}
-      />
-    );
-  }, [scrollOffset, horizontal]);
-
-  return anchor;
+    throw new Error("STUB");
 }
